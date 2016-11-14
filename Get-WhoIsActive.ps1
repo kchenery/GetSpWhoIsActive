@@ -9,7 +9,7 @@ Function Get-WhoIsActive {
     [System.Reflection.Assembly]::LoadWithPartialName('System.IO.Compression') | Out-Null
 
     $DownloadUri = $Uri + (Invoke-WebRequest -Uri $Uri).Links[0].href
-    $ZipBytes = Invoke-WebRequest -Uri $Download
+    $ZipBytes = Invoke-WebRequest -Uri $DownloadUri
     $ZipStream = New-Object System.IO.Memorystream
     $ZipStream.Write($ZipBytes.Content,0,$ZipBytes.Content.Length)
     $ZipArchive = New-Object System.IO.Compression.ZipArchive($ZipStream)
